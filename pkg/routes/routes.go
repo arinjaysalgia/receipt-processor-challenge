@@ -1,8 +1,6 @@
 package routes
 
 import (
-	"my-go-api/pkg/handlers"
-
 	"github.com/gin-gonic/gin"
 )
 

@@ -1,8 +1,6 @@
 package main
 
-import (
-	"receipt-processor-challenge/pkg/routes"
-)
+import "github.com/arinjaysalgia/receipt-processor-challenge/pkg/routes"
 
 func main() {
 	router := routes.SetupRouter()
