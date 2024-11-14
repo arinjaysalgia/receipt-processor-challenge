@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: receipt-processor-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: receipt-processor
+  template:
+    metadata:
+      labels:
+        app: receipt-processor
+    spec:
+      containers:
+        - name: receipt-processor
+          image: receipt-processor:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: receipt-processor-service
+spec:
+  selector:
+    app: receipt-processor
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 30080
