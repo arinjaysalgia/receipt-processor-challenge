@@ -41,6 +41,12 @@ func ProcessReceiptHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Validate that the Retailer field is present
+	if strings.TrimSpace(receipt.Retailer) == "" {
+		http.Error(w, "The 'retailer' field is required", http.StatusBadRequest)
+		return
+	}
+
 	points, err := calculatePoints(receipt)
 	if err != nil {
 		http.Error(w, "Error processing receipt points", http.StatusInternalServerError)
